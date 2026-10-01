@@ -3,289 +3,516 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Für dich ❤️</title>
+<title>Unsere Geschichte ❤️</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg1: #2b0a1e;
-    --bg2: #5c1237;
-    --pink: #ff5c8a;
-    --rose: #ffb3c7;
-    --text: #fff5f8;
-    --card: rgba(255, 255, 255, 0.08);
-    --border: rgba(255, 179, 199, 0.25);
+    --bg: #12060d;
+    --bg2: #3a0c24;
+    --gold: #f2c879;
+    --gold2: #c9973f;
+    --rose: #ff8fab;
+    --pink: #ff4d79;
+    --text: #fff6f0;
+    --muted: rgba(255, 246, 240, 0.65);
+    --card: rgba(255, 255, 255, 0.06);
+    --border: rgba(242, 200, 121, 0.22);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { min-height: 100%; }
+  html { scroll-behavior: smooth; }
   body {
     font-family: "Poppins", system-ui, sans-serif;
     color: var(--text);
-    background: radial-gradient(ellipse at top, var(--bg2), var(--bg1) 70%) fixed;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 0%, var(--bg2), transparent 70%),
+      radial-gradient(ellipse 60% 40% at 100% 100%, rgba(201, 151, 63, 0.12), transparent 70%),
+      var(--bg);
+    background-attachment: fixed;
     overflow-x: hidden;
     text-align: center;
-    padding: 48px 16px 80px;
   }
-  #hearts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-  .float-heart {
-    position: absolute; bottom: -40px;
-    animation: rise linear forwards;
-    opacity: 0.7;
-  }
-  @keyframes rise {
-    to { transform: translateY(-115vh) rotate(25deg); opacity: 0; }
-  }
-  .burst {
-    position: fixed; pointer-events: none; z-index: 50;
-    animation: burst 0.9s ease-out forwards;
-  }
-  @keyframes burst {
-    to { transform: translate(var(--dx), var(--dy)) scale(0.4); opacity: 0; }
-  }
-  main { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; }
 
-  .big-heart {
-    font-size: 72px; display: inline-block;
-    animation: beat 1.2s ease-in-out infinite;
-    cursor: pointer; user-select: none;
+  /* ---------- Hintergrund ---------- */
+  #stars, #hearts, #confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
+  #stars { z-index: 0; }
+  #hearts { z-index: 1; }
+  #confetti { z-index: 60; }
+  .star {
+    position: absolute; width: 2px; height: 2px; border-radius: 50%;
+    background: #fff; animation: twinkle ease-in-out infinite;
   }
-  @keyframes beat {
-    0%, 100% { transform: scale(1); }
-    15% { transform: scale(1.18); }
-    30% { transform: scale(1); }
-    45% { transform: scale(1.12); }
+  @keyframes twinkle { 0%, 100% { opacity: 0.15; } 50% { opacity: 0.9; } }
+  .float-heart { position: absolute; bottom: -40px; animation: rise linear forwards; opacity: 0.55; }
+  @keyframes rise { to { transform: translateY(-115vh) rotate(30deg); opacity: 0; } }
+  .burst { position: fixed; pointer-events: none; z-index: 55; animation: burst 0.9s ease-out forwards; }
+  @keyframes burst { to { transform: translate(var(--dx), var(--dy)) scale(0.3); opacity: 0; } }
+  .confetti-piece {
+    position: absolute; top: -20px; width: 9px; height: 14px; border-radius: 2px;
+    animation: fall linear forwards;
   }
+  @keyframes fall { to { transform: translateY(110vh) rotate(720deg); opacity: 0.8; } }
+
+  main { position: relative; z-index: 2; max-width: 880px; margin: 0 auto; padding: 0 16px 80px; }
+
+  /* ---------- Hero ---------- */
+  .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 0; }
+  .bismillah { font-size: 22px; color: var(--gold); opacity: 0.85; margin-bottom: 18px; direction: rtl; }
+  .rings { font-size: 64px; animation: beat 1.4s ease-in-out infinite; cursor: pointer; user-select: none; }
+  @keyframes beat { 0%, 100% { transform: scale(1); } 15% { transform: scale(1.15); } 30% { transform: scale(1); } 45% { transform: scale(1.1); } }
   h1 {
-    font-family: "Dancing Script", cursive;
-    font-size: clamp(42px, 9vw, 72px);
-    color: var(--rose);
-    margin: 8px 0 4px;
-    text-shadow: 0 0 24px rgba(255, 92, 138, 0.5);
+    font-family: "Great Vibes", cursive; font-weight: 400;
+    font-size: clamp(56px, 13vw, 110px); line-height: 1.05;
+    background: linear-gradient(120deg, var(--gold), #fff3d6, var(--rose), var(--gold));
+    background-size: 300% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: shine 8s linear infinite;
+    margin: 8px 0;
   }
-  .since { font-weight: 300; opacity: 0.85; margin-bottom: 36px; }
+  @keyframes shine { to { background-position: 300% 0; } }
+  .subtitle { color: var(--muted); font-weight: 300; letter-spacing: 1px; margin-bottom: 36px; }
 
-  .counter {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-bottom: 16px;
-  }
-  .unit {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 18px 8px;
-    backdrop-filter: blur(6px);
-  }
-  .unit .num {
-    font-size: clamp(30px, 7vw, 46px);
-    font-weight: 600;
-    color: var(--pink);
+  .hero-label { text-transform: uppercase; letter-spacing: 4px; font-size: 13px; color: var(--gold); margin-bottom: 6px; }
+  .hero-secs {
+    font-family: "Playfair Display", serif; font-weight: 700;
+    font-size: clamp(38px, 10vw, 84px);
     font-variant-numeric: tabular-nums;
-    line-height: 1.1;
+    text-shadow: 0 0 40px rgba(255, 77, 121, 0.45);
   }
-  .unit .lbl { font-size: 13px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.75; }
+  .hero-unit { color: var(--muted); margin-bottom: 30px; }
 
-  .totals {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px;
-    font-size: 14px; opacity: 0.85; margin-bottom: 48px;
+  .married-pill {
+    display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 6px 14px;
+    padding: 14px 22px; border-radius: 99px;
+    background: linear-gradient(135deg, rgba(242, 200, 121, 0.15), rgba(255, 77, 121, 0.15));
+    border: 1px solid var(--border);
+    font-size: 15px;
   }
-  .totals b { color: var(--rose); font-variant-numeric: tabular-nums; }
+  .married-pill b { color: var(--gold); font-variant-numeric: tabular-nums; }
+  .scroll-hint { margin-top: 40px; color: var(--muted); font-size: 13px; animation: bob 2s ease-in-out infinite; }
+  @keyframes bob { 50% { transform: translateY(8px); } }
 
-  section { margin-bottom: 48px; }
+  /* ---------- Sektionen ---------- */
+  section { padding: 56px 0 8px; }
   h2 {
-    font-family: "Dancing Script", cursive;
-    font-size: 38px; color: var(--rose); margin-bottom: 16px;
+    font-family: "Great Vibes", cursive; font-weight: 400;
+    font-size: clamp(42px, 9vw, 60px); color: var(--gold); margin-bottom: 8px;
   }
+  .section-sub { color: var(--muted); margin-bottom: 28px; font-weight: 300; }
 
-  .anniv {
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.show { opacity: 1; transform: none; }
+
+  .card {
     background: var(--card); border: 1px solid var(--border);
-    border-radius: 18px; padding: 22px 16px;
-  }
-  .anniv .num { font-size: 40px; font-weight: 600; color: var(--pink); }
-  .progress {
-    height: 10px; border-radius: 99px; background: rgba(255,255,255,0.1);
-    margin: 14px auto 6px; max-width: 420px; overflow: hidden;
-  }
-  .progress div {
-    height: 100%; border-radius: 99px;
-    background: linear-gradient(90deg, var(--rose), var(--pink));
-    transition: width 1s;
+    border-radius: 22px; padding: 24px 18px;
+    backdrop-filter: blur(8px);
   }
 
-  .reason-box {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 18px; padding: 28px 20px; min-height: 120px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px; line-height: 1.5;
-  }
-  .reason-box.pop { animation: pop 0.4s ease; }
-  @keyframes pop { 0% { transform: scale(0.92); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-  button {
-    font: inherit; font-weight: 600;
-    margin-top: 16px; padding: 12px 26px;
-    border: none; border-radius: 99px; cursor: pointer;
-    color: #fff;
-    background: linear-gradient(135deg, var(--pink), #d6336c);
-    box-shadow: 0 6px 20px rgba(255, 92, 138, 0.35);
-    transition: transform 0.15s;
-  }
-  button:hover { transform: translateY(-2px); }
-  button:active { transform: scale(0.97); }
+  /* ---------- Phasen-Balken ---------- */
+  .phases { display: flex; height: 18px; border-radius: 99px; overflow: hidden; margin: 8px 0 14px; }
+  .phases div { height: 100%; transition: flex-grow 1s; }
+  .ph1 { background: linear-gradient(90deg, #ff8fab, #ff4d79); }
+  .ph2 { background: linear-gradient(90deg, #ff4d79, #c9973f); }
+  .ph3 { background: linear-gradient(90deg, #c9973f, #f2c879); }
+  .phase-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; font-size: 14px; color: var(--muted); }
+  .phase-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+  .phase-legend b { color: var(--text); }
 
+  /* ---------- Timeline ---------- */
+  .timeline { position: relative; text-align: left; }
+  .timeline::before {
+    content: ""; position: absolute; left: 22px; top: 0; bottom: 0; width: 2px;
+    background: linear-gradient(var(--rose), var(--gold));
+  }
+  .event { position: relative; padding-left: 62px; margin-bottom: 26px; }
+  .event .dot {
+    position: absolute; left: 4px; top: 18px;
+    width: 38px; height: 38px; border-radius: 50%;
+    display: grid; place-items: center; font-size: 19px;
+    background: var(--bg); border: 2px solid var(--gold);
+    box-shadow: 0 0 18px rgba(242, 200, 121, 0.35);
+  }
+  .event .card { padding: 20px 18px; }
+  .event .date { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+  .event h3 { font-family: "Playfair Display", serif; font-size: 24px; margin: 4px 0 2px; }
+  .event .hijri { font-size: 13px; color: var(--muted); }
+  .event .dua { margin-top: 8px; font-size: 14px; color: var(--rose); font-style: italic; }
+  .mini-counter { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin: 14px 0 10px; text-align: center; }
+  .mini-counter div { background: rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 8px 2px; }
+  .mini-counter b { display: block; font-size: 20px; color: var(--rose); font-variant-numeric: tabular-nums; }
+  .mini-counter span { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+  .event .secs { font-size: 14px; color: var(--muted); }
+  .event .secs b { color: var(--gold); font-variant-numeric: tabular-nums; }
+  .gap-note { font-size: 13px; color: var(--muted); padding-left: 62px; margin: -14px 0 22px; font-style: italic; }
+
+  /* ---------- Jahrestage ---------- */
+  .next-big .num {
+    font-family: "Playfair Display", serif; font-size: clamp(30px, 8vw, 52px);
+    font-variant-numeric: tabular-nums; color: var(--rose);
+  }
+  .next-big .what { font-size: 20px; margin-top: 4px; }
+  .next-big .what b { color: var(--gold); }
+  .anniv-list { display: grid; gap: 10px; margin-top: 16px; text-align: left; }
+  .anniv-row {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 12px 16px; font-size: 15px;
+  }
+  .anniv-row .left { display: flex; gap: 10px; align-items: center; }
+  .anniv-row .days { color: var(--gold); white-space: nowrap; font-weight: 600; }
+
+  /* ---------- Statistiken ---------- */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+  .stat { padding: 20px 12px; }
+  .stat .icon { font-size: 28px; }
+  .stat .val { font-size: 24px; font-weight: 600; color: var(--gold); font-variant-numeric: tabular-nums; margin: 6px 0 2px; }
+  .stat .lbl { font-size: 13px; color: var(--muted); }
+
+  /* ---------- Meilensteine ---------- */
   .milestones { display: grid; gap: 10px; text-align: left; }
   .ms {
     display: flex; justify-content: space-between; gap: 12px;
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 12px 16px; font-size: 15px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 12px 16px; font-size: 15px;
   }
-  .ms.done { opacity: 0.55; }
-  .ms .when { color: var(--rose); white-space: nowrap; }
+  .ms.done { opacity: 0.5; }
+  .ms.next { border-color: var(--rose); box-shadow: 0 0 20px rgba(255, 77, 121, 0.25); }
+  .ms .when { color: var(--gold); white-space: nowrap; }
 
-  footer { opacity: 0.6; font-size: 14px; }
+  /* ---------- Gründe ---------- */
+  .reason-box {
+    min-height: 130px; display: flex; align-items: center; justify-content: center;
+    font-family: "Playfair Display", serif; font-size: 22px; line-height: 1.5;
+  }
+  .reason-box.pop { animation: pop 0.45s ease; }
+  @keyframes pop { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-  @media (max-width: 480px) {
-    .counter { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .unit { padding: 14px 4px; }
-    .unit .lbl { font-size: 11px; letter-spacing: 1px; }
+  button {
+    font: inherit; font-weight: 600; color: #2a0f00;
+    margin: 18px 6px 0; padding: 13px 28px;
+    border: none; border-radius: 99px; cursor: pointer;
+    background: linear-gradient(135deg, #ffe3a8, var(--gold), var(--gold2));
+    box-shadow: 0 6px 24px rgba(242, 200, 121, 0.3);
+    transition: transform 0.15s;
+  }
+  button.alt { color: #fff; background: linear-gradient(135deg, var(--rose), var(--pink)); box-shadow: 0 6px 24px rgba(255, 77, 121, 0.3); }
+  button:hover { transform: translateY(-2px); }
+  button:active { transform: scale(0.97); }
+
+  .banner {
+    display: none; margin: 0 auto 20px; max-width: 560px;
+    padding: 14px 20px; border-radius: 16px;
+    background: linear-gradient(135deg, var(--gold), var(--rose));
+    color: #2a0f00; font-weight: 600;
+  }
+  .banner.on { display: block; }
+
+  footer { padding-top: 60px; color: var(--muted); font-size: 14px; }
+  footer .ar { font-size: 20px; color: var(--gold); margin-bottom: 8px; direction: rtl; }
+
+  @media (max-width: 520px) {
+    .mini-counter { grid-template-columns: repeat(3, 1fr); }
+    .event { padding-left: 52px; }
+    .gap-note { padding-left: 52px; }
+    .timeline::before { left: 17px; }
+    .event .dot { left: 0; width: 34px; height: 34px; font-size: 16px; }
+    .anniv-row, .ms { font-size: 14px; }
   }
 </style>
 </head>
 <body>
+<div id="stars"></div>
 <div id="hearts"></div>
+<div id="confetti"></div>
 
 <main>
-  <div class="big-heart" id="bigHeart" title="Klick mich!">❤️</div>
-  <h1>Wir zwei</h1>
-  <p class="since">zusammen seit dem 10. Juni 2021</p>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="bismillah">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+    <div class="rings" id="rings" title="Klick mich!">💍</div>
+    <h1>Unsere Geschichte</h1>
+    <p class="subtitle">vom ersten Treffen bis für immer</p>
 
-  <div class="counter">
-    <div class="unit"><div class="num" id="y">0</div><div class="lbl">Jahre</div></div>
-    <div class="unit"><div class="num" id="mo">0</div><div class="lbl">Monate</div></div>
-    <div class="unit"><div class="num" id="d">0</div><div class="lbl">Tage</div></div>
-    <div class="unit"><div class="num" id="h">0</div><div class="lbl">Stunden</div></div>
-    <div class="unit"><div class="num" id="mi">0</div><div class="lbl">Minuten</div></div>
-    <div class="unit"><div class="num" id="s">0</div><div class="lbl">Sekunden</div></div>
-  </div>
-  <div class="totals">
-    <span>insgesamt <b id="totalDays">0</b> Tage</span>
-    <span><b id="totalHours">0</b> Stunden</span>
-    <span><b id="totalSecs">0</b> Sekunden</span>
-  </div>
+    <div class="banner" id="todayBanner"></div>
 
-  <section>
-    <h2>Nächster Jahrestag</h2>
-    <div class="anniv">
-      <div>noch</div>
-      <div class="num" id="annivDays">0</div>
-      <div id="annivText">Tage bis zum Jahrestag</div>
-      <div class="progress"><div id="annivBar" style="width:0%"></div></div>
+    <div class="hero-label">Seit wir uns kennen</div>
+    <div class="hero-secs" id="heroSecs">0</div>
+    <div class="hero-unit">Sekunden – und jede einzelne zählt</div>
+
+    <div class="married-pill">
+      <span>💍 verheiratet seit <b id="marriedDays">0</b> Tagen</span>
+      <span>⏱️ <b id="marriedSecs">0</b> Sekunden</span>
+    </div>
+
+    <div class="scroll-hint">↓ scroll runter ↓</div>
+  </header>
+
+  <!-- PHASEN -->
+  <section class="reveal">
+    <h2>Unser Weg</h2>
+    <p class="section-sub">Wie viel Zeit jede Phase gedauert hat</p>
+    <div class="card">
+      <div class="phases">
+        <div class="ph1" id="ph1"></div>
+        <div class="ph2" id="ph2"></div>
+        <div class="ph3" id="ph3"></div>
+      </div>
+      <div class="phase-legend">
+        <span><i class="ph1"></i>Kennenlernen → Verlobung: <b id="ph1d"></b></span>
+        <span><i class="ph2"></i>Verlobt: <b id="ph2d"></b></span>
+        <span><i class="ph3"></i>Verheiratet: <b id="ph3d"></b></span>
+      </div>
     </div>
   </section>
 
+  <!-- TIMELINE -->
   <section>
-    <h2>Warum ich dich liebe</h2>
-    <div class="reason-box" id="reason">Klick auf den Button 💌</div>
-    <button id="reasonBtn">Noch ein Grund</button>
+    <h2 class="reveal">Unsere Momente</h2>
+    <p class="section-sub reveal">Jeder Moment mit eigenem Live-Zähler</p>
+    <div class="timeline" id="timeline"></div>
   </section>
 
-  <section>
-    <h2>Unsere Meilensteine</h2>
+  <!-- JAHRESTAGE -->
+  <section class="reveal">
+    <h2>Nächste Jahrestage</h2>
+    <p class="section-sub">Der Countdown läuft</p>
+    <div class="card next-big">
+      <div class="num" id="nextCountdown">–</div>
+      <div class="what" id="nextWhat"></div>
+    </div>
+    <div class="anniv-list" id="annivList"></div>
+  </section>
+
+  <!-- STATISTIKEN -->
+  <section class="reveal">
+    <h2>In Zahlen</h2>
+    <p class="section-sub">Seit dem 10. Juni 2021 haben wir zusammen erlebt…</p>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <!-- MEILENSTEINE -->
+  <section class="reveal">
+    <h2>Meilensteine</h2>
+    <p class="section-sub">Tage & Sekunden seit wir uns kennen</p>
     <div class="milestones" id="milestones"></div>
   </section>
 
-  <footer>Klick irgendwo hin für Herzen 💕</footer>
+  <!-- GRÜNDE -->
+  <section class="reveal">
+    <h2>Warum ich dich liebe</h2>
+    <div class="card reason-box" id="reason">Drück auf den Button 💌</div>
+    <button id="reasonBtn">Noch ein Grund</button>
+    <button class="alt" id="partyBtn">Feiern 🎉</button>
+  </section>
+
+  <footer>
+    <div class="ar">بَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</div>
+    <div>Möge Allah euch segnen und euch im Guten vereinen.</div>
+    <div style="margin-top:14px">Klick irgendwo hin für Herzen 💕</div>
+  </footer>
 </main>
 
 <script>
-  const START = new Date(2021, 5, 10, 0, 0, 0); // 10.06.2021
+  // ---------- Daten ----------
+  const EVENTS = [
+    { key: "meet",   date: new Date(2021, 5, 10), icon: "💫", title: "Kennengelernt",        text: "Der Tag, an dem alles begann." },
+    { key: "engage", date: new Date(2023, 2, 4),  icon: "💍", title: "Verlobung",            text: "Ja – für immer." },
+    { key: "civil",  date: new Date(2024, 3, 19), icon: "📜", title: "Standesamt",           text: "Offiziell verheiratet." },
+    { key: "nikah",  date: new Date(2024, 3, 20), icon: "🕌", title: "Islamische Hochzeit",  text: "Unser Nikah.", dua: "Barakallahu lakuma – möge Allah euch segnen." },
+    { key: "party",  date: new Date(2024, 5, 1),  icon: "🎊", title: "Hochzeitsfeier",       text: "Gefeiert mit allen, die wir lieben." },
+  ];
+  const MEET = EVENTS[0].date;
+  const MARRIED = EVENTS[2].date;
 
   const $ = id => document.getElementById(id);
-  const fmt = n => n.toLocaleString("de-DE");
+  const fmt = n => Math.floor(n).toLocaleString("de-DE");
+  const DAY = 86400000;
+  const dateStr = d => d.toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" });
+  let hijriFmt = null;
+  try { hijriFmt = new Intl.DateTimeFormat("de-u-ca-islamic-umalqura", { day: "numeric", month: "long", year: "numeric" }); } catch (e) {}
 
-  function addMonths(date, months) {
-    const d = new Date(date);
-    d.setMonth(d.getMonth() + months);
-    return d;
+  function addMonths(date, n) { const d = new Date(date); d.setMonth(d.getMonth() + n); return d; }
+
+  // Jahre/Monate/Tage/Std/Min/Sek seit start
+  function diffParts(start, now) {
+    let months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
+    if (addMonths(start, months) > now) months--;
+    let rest = Math.floor((now - addMonths(start, months)) / 1000);
+    const d = Math.floor(rest / 86400); rest -= d * 86400;
+    const h = Math.floor(rest / 3600); rest -= h * 3600;
+    const m = Math.floor(rest / 60);
+    return { y: Math.floor(months / 12), mo: months % 12, d, h, m, s: rest - m * 60 };
   }
 
-  function tick() {
-    const now = new Date();
-
-    // ganze Monate seit Start
-    let months = (now.getFullYear() - START.getFullYear()) * 12 + (now.getMonth() - START.getMonth());
-    if (addMonths(START, months) > now) months--;
-    const anchor = addMonths(START, months);
-    let rest = Math.floor((now - anchor) / 1000);
-
-    const days = Math.floor(rest / 86400); rest -= days * 86400;
-    const hours = Math.floor(rest / 3600); rest -= hours * 3600;
-    const mins = Math.floor(rest / 60);
-    const secs = rest - mins * 60;
-
-    $("y").textContent = Math.floor(months / 12);
-    $("mo").textContent = months % 12;
-    $("d").textContent = days;
-    $("h").textContent = hours;
-    $("mi").textContent = mins;
-    $("s").textContent = secs;
-
-    const totalSecs = Math.floor((now - START) / 1000);
-    $("totalDays").textContent = fmt(Math.floor(totalSecs / 86400));
-    $("totalHours").textContent = fmt(Math.floor(totalSecs / 3600));
-    $("totalSecs").textContent = fmt(totalSecs);
-
-    // nächster Jahrestag
-    let next = new Date(now.getFullYear(), 5, 10);
-    if (next <= now) next = new Date(now.getFullYear() + 1, 5, 10);
-    const prev = new Date(next.getFullYear() - 1, 5, 10);
-    const daysLeft = Math.ceil((next - now) / 86400000);
-    const yearNr = next.getFullYear() - START.getFullYear();
-    $("annivDays").textContent = daysLeft;
-    $("annivText").textContent = (daysLeft === 1 ? "Tag" : "Tage") + " bis zu unserem " + yearNr + ". Jahrestag";
-    $("annivBar").style.width = ((now - prev) / (next - prev) * 100).toFixed(1) + "%";
+  function durationText(ms) {
+    const days = Math.round(ms / DAY);
+    return days.toLocaleString("de-DE") + " Tage";
   }
-  tick();
-  setInterval(tick, 1000);
 
-  // Meilensteine
-  const milestones = [
-    { label: "100 Tage", days: 100 },
-    { label: "500 Tage", days: 500 },
-    { label: "1.000 Tage", days: 1000 },
-    { label: "1.500 Tage", days: 1500 },
-    { label: "2.000 Tage", days: 2000 },
-    { label: "2.500 Tage", days: 2500 },
-    { label: "3.000 Tage", days: 3000 },
-  ];
-  const msBox = $("milestones");
-  const today = new Date();
-  milestones.forEach(m => {
-    const date = new Date(START);
-    date.setDate(date.getDate() + m.days);
-    const done = date <= today;
+  // ---------- Timeline bauen ----------
+  const tl = $("timeline");
+  EVENTS.forEach((ev, i) => {
+    if (i > 0) {
+      const gap = document.createElement("div");
+      gap.className = "gap-note reveal";
+      gap.textContent = "… " + durationText(ev.date - EVENTS[i - 1].date) + " später";
+      tl.appendChild(gap);
+    }
     const el = document.createElement("div");
-    el.className = "ms" + (done ? " done" : "");
-    el.innerHTML = `<span>${done ? "✅" : "⏳"} ${m.label} zusammen</span>
-      <span class="when">${date.toLocaleDateString("de-DE")}</span>`;
-    msBox.appendChild(el);
+    el.className = "event reveal";
+    const hijri = hijriFmt ? hijriFmt.format(ev.date) : "";
+    el.innerHTML = `
+      <div class="dot">${ev.icon}</div>
+      <div class="card">
+        <div class="date">${dateStr(ev.date)}</div>
+        <h3>${ev.title}</h3>
+        ${hijri ? `<div class="hijri">☪︎ ${hijri}</div>` : ""}
+        <div class="mini-counter">
+          <div><b data-k="y">0</b><span>Jahre</span></div>
+          <div><b data-k="mo">0</b><span>Monate</span></div>
+          <div><b data-k="d">0</b><span>Tage</span></div>
+          <div><b data-k="h">0</b><span>Std</span></div>
+          <div><b data-k="m">0</b><span>Min</span></div>
+          <div><b data-k="s">0</b><span>Sek</span></div>
+        </div>
+        <div class="secs">das sind <b data-k="total">0</b> Sekunden · ${ev.text}</div>
+        ${ev.dua ? `<div class="dua">${ev.dua}</div>` : ""}
+      </div>`;
+    ev.el = el;
+    tl.appendChild(el);
   });
 
-  // Gründe
+  // ---------- Phasen ----------
+  function updatePhases(now) {
+    const p1 = EVENTS[1].date - MEET, p2 = MARRIED - EVENTS[1].date, p3 = now - MARRIED;
+    $("ph1").style.flexGrow = p1; $("ph2").style.flexGrow = p2; $("ph3").style.flexGrow = p3;
+    $("ph1d").textContent = durationText(p1);
+    $("ph2d").textContent = durationText(p2);
+    $("ph3d").textContent = durationText(p3);
+  }
+
+  // ---------- Jahrestage ----------
+  function nextOccurrence(date, now) {
+    let n = new Date(now.getFullYear(), date.getMonth(), date.getDate());
+    if (n <= now) n = new Date(now.getFullYear() + 1, date.getMonth(), date.getDate());
+    return n;
+  }
+  function updateAnniversaries(now) {
+    const list = EVENTS.map(ev => {
+      const next = nextOccurrence(ev.date, now);
+      return { ev, next, nr: next.getFullYear() - ev.date.getFullYear(), ms: next - now };
+    }).sort((a, b) => a.ms - b.ms);
+
+    const first = list[0];
+    let r = Math.floor(first.ms / 1000);
+    const d = Math.floor(r / 86400); r -= d * 86400;
+    const h = Math.floor(r / 3600); r -= h * 3600;
+    const m = Math.floor(r / 60); const s = r - m * 60;
+    const pad = n => String(n).padStart(2, "0");
+    $("nextCountdown").textContent = `${d}T ${pad(h)}:${pad(m)}:${pad(s)}`;
+    $("nextWhat").innerHTML = `bis zum <b>${first.nr}. Jahrestag</b> – ${first.ev.title} ${first.ev.icon}`;
+
+    $("annivList").innerHTML = list.map(a => `
+      <div class="anniv-row">
+        <span class="left"><span>${a.ev.icon}</span><span>${a.nr}. Jahrestag ${a.ev.title}<br><small style="color:var(--muted)">${dateStr(a.next)}</small></span></span>
+        <span class="days">in ${Math.ceil(a.ms / DAY)} Tagen</span>
+      </div>`).join("");
+  }
+
+  // ---------- Heute ein Jahrestag? ----------
+  function checkToday(now) {
+    const hit = EVENTS.filter(ev => ev.date.getMonth() === now.getMonth() && ev.date.getDate() === now.getDate() && now.getFullYear() > ev.date.getFullYear());
+    if (!hit.length) return;
+    const b = $("todayBanner");
+    b.textContent = "🎉 Heute ist ein besonderer Tag: " + hit.map(ev => `${now.getFullYear() - ev.date.getFullYear()}. Jahrestag ${ev.title}`).join(" & ") + "!";
+    b.classList.add("on");
+    setTimeout(() => confetti(200), 800);
+  }
+
+  // ---------- Statistiken ----------
+  const STATS = [
+    { icon: "💓", lbl: "Herzschläge (jeder)", f: s => s * 70 / 60 },
+    { icon: "🌬️", lbl: "Atemzüge (jeder)", f: s => s * 15 / 60 },
+    { icon: "🌅", lbl: "Sonnenaufgänge", f: s => s / 86400 },
+    { icon: "🌕", lbl: "Vollmonde", f: s => s / (29.53 * 86400) },
+    { icon: "🕌", lbl: "Freitage (Jumu'ah)", f: s => s / (7 * 86400) },
+    { icon: "🌙", lbl: "Ramadane", f: s => s / (354.37 * 86400) },
+    { icon: "🌍", lbl: "Runden um die Sonne", f: s => s / (365.25 * 86400), dec: 2 },
+    { icon: "🚀", lbl: "km mit der Erde durchs All", f: s => s * 29.78 },
+  ];
+  $("stats").innerHTML = STATS.map((st, i) => `
+    <div class="card stat"><div class="icon">${st.icon}</div><div class="val" id="st${i}">0</div><div class="lbl">${st.lbl}</div></div>`).join("");
+  function updateStats(now) {
+    const s = (now - MEET) / 1000;
+    STATS.forEach((st, i) => {
+      const v = st.f(s);
+      $("st" + i).textContent = st.dec ? v.toLocaleString("de-DE", { minimumFractionDigits: st.dec, maximumFractionDigits: st.dec }) : fmt(v);
+    });
+  }
+
+  // ---------- Meilensteine ----------
+  function buildMilestones() {
+    const now = new Date();
+    const items = [];
+    [100, 500, 1000, 1500, 2000, 2500, 3000, 3650, 5000, 10000].forEach(d =>
+      items.push({ label: `${d.toLocaleString("de-DE")} Tage zusammen`, date: new Date(MEET.getTime() + d * DAY) }));
+    [100, 200, 300, 500, 1000].forEach(m =>
+      items.push({ label: `${m} Millionen Sekunden zusammen`, date: new Date(MEET.getTime() + m * 1e9) }));
+    items.sort((a, b) => a.date - b.date);
+    let nextMarked = false;
+    $("milestones").innerHTML = items.map(it => {
+      const done = it.date <= now;
+      let cls = done ? "done" : "";
+      if (!done && !nextMarked) { cls = "next"; nextMarked = true; }
+      return `<div class="ms ${cls}"><span>${done ? "✅" : cls === "next" ? "🔜" : "⏳"} ${it.label}</span><span class="when">${it.date.toLocaleDateString("de-DE")}</span></div>`;
+    }).join("");
+  }
+  buildMilestones();
+
+  // ---------- Live-Updates ----------
+  function tickSecond() {
+    const now = new Date();
+    EVENTS.forEach(ev => {
+      const p = diffParts(ev.date, now);
+      for (const k of ["y", "mo", "d", "h", "m", "s"]) ev.el.querySelector(`[data-k="${k}"]`).textContent = p[k];
+      ev.el.querySelector('[data-k="total"]').textContent = fmt((now - ev.date) / 1000);
+    });
+    $("heroSecs").textContent = fmt((now - MEET) / 1000);
+    $("marriedDays").textContent = fmt((now - MARRIED) / DAY);
+    $("marriedSecs").textContent = fmt((now - MARRIED) / 1000);
+    updatePhases(now);
+    updateAnniversaries(now);
+    updateStats(now);
+  }
+  tickSecond();
+  setInterval(tickSecond, 1000);
+
+  checkToday(new Date());
+
+  // ---------- Scroll-Animation ----------
+  const io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add("show"); io.unobserve(e.target); }
+  }), { threshold: 0.12 });
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+  // ---------- Gründe ----------
   const reasons = [
+    "Weil du seit dem 10. Juni 2021 mein Lieblingsmensch bist",
     "Weil dein Lachen meinen ganzen Tag besser macht 😊",
     "Weil ich bei dir einfach ich selbst sein kann",
+    "Weil du meine Frau bist – und ich das jeden Tag feiere 💍",
     "Weil du immer für mich da bist, egal was ist",
-    "Weil jeder Moment mit dir besonders ist ✨",
-    "Weil du mich jeden Tag ein bisschen besser machst",
-    "Weil ich mit dir über alles reden kann",
     "Weil du mein Zuhause bist 🏡",
-    "Weil wir zusammen die besten Erinnerungen haben",
-    "Weil du einfach wunderschön bist – innen und außen",
-    "Weil ich mir keine Zukunft ohne dich vorstellen kann 💍",
+    "Weil jeder Tag mit dir ein Geschenk von Allah ist",
+    "Weil du mich jeden Tag ein bisschen besser machst",
+    "Weil ich mir keine Zukunft ohne dich vorstellen kann",
+    "Weil du einfach wunderschön bist – innen und außen ✨",
+    "Weil wir die besten Erinnerungen zusammen haben – und noch so viele vor uns",
   ];
   let lastReason = -1;
-  $("reasonBtn").addEventListener("click", () => {
+  $("reasonBtn").addEventListener("click", e => {
+    e.stopPropagation();
     let i;
     do { i = Math.floor(Math.random() * reasons.length); } while (i === lastReason);
     lastReason = i;
@@ -293,44 +520,73 @@
     box.classList.remove("pop"); void box.offsetWidth; box.classList.add("pop");
     box.textContent = reasons[i];
   });
+  $("partyBtn").addEventListener("click", e => { e.stopPropagation(); confetti(220); });
 
-  // fliegende Herzen im Hintergrund
-  const heartEmojis = ["❤️", "💕", "💖", "💗", "💓", "🩷"];
-  function spawnFloatingHeart() {
+  // ---------- Effekte ----------
+  // Sterne
+  for (let i = 0; i < 90; i++) {
+    const s = document.createElement("div");
+    s.className = "star";
+    s.style.left = Math.random() * 100 + "vw";
+    s.style.top = Math.random() * 100 + "vh";
+    s.style.animationDuration = 2 + Math.random() * 4 + "s";
+    s.style.animationDelay = Math.random() * 4 + "s";
+    $("stars").appendChild(s);
+  }
+
+  // fliegende Herzen
+  const heartEmojis = ["❤️", "💕", "💖", "💗", "🤍", "💛"];
+  const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+  setInterval(() => {
     const el = document.createElement("span");
     el.className = "float-heart";
-    el.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+    el.textContent = pick(heartEmojis);
     el.style.left = Math.random() * 100 + "vw";
-    el.style.fontSize = 14 + Math.random() * 22 + "px";
-    el.style.animationDuration = 7 + Math.random() * 6 + "s";
+    el.style.fontSize = 12 + Math.random() * 20 + "px";
+    el.style.animationDuration = 8 + Math.random() * 7 + "s";
     $("hearts").appendChild(el);
     el.addEventListener("animationend", () => el.remove());
-  }
-  setInterval(spawnFloatingHeart, 500);
+  }, 650);
 
-  // Herz-Explosion beim Klicken
+  // Herz-Explosion
   function burst(x, y, count = 12) {
     for (let i = 0; i < count; i++) {
       const el = document.createElement("span");
       el.className = "burst";
-      el.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
-      const angle = (Math.PI * 2 * i) / count;
-      const dist = 60 + Math.random() * 60;
+      el.textContent = pick(heartEmojis);
+      const a = (Math.PI * 2 * i) / count, dist = 60 + Math.random() * 70;
       el.style.left = x - 10 + "px";
       el.style.top = y - 10 + "px";
       el.style.fontSize = 14 + Math.random() * 12 + "px";
-      el.style.setProperty("--dx", Math.cos(angle) * dist + "px");
-      el.style.setProperty("--dy", Math.sin(angle) * dist + "px");
+      el.style.setProperty("--dx", Math.cos(a) * dist + "px");
+      el.style.setProperty("--dy", Math.sin(a) * dist + "px");
       document.body.appendChild(el);
       el.addEventListener("animationend", () => el.remove());
     }
   }
   document.addEventListener("click", e => burst(e.clientX, e.clientY));
-  $("bigHeart").addEventListener("click", e => {
+  $("rings").addEventListener("click", e => {
     e.stopPropagation();
     const r = e.target.getBoundingClientRect();
     burst(r.left + r.width / 2, r.top + r.height / 2, 30);
+    confetti(120);
   });
+
+  // Konfetti
+  function confetti(n) {
+    const colors = ["#f2c879", "#ff8fab", "#ff4d79", "#fff3d6", "#c9973f", "#ffffff"];
+    for (let i = 0; i < n; i++) {
+      const c = document.createElement("div");
+      c.className = "confetti-piece";
+      c.style.left = Math.random() * 100 + "vw";
+      c.style.background = pick(colors);
+      c.style.animationDuration = 2.5 + Math.random() * 2.5 + "s";
+      c.style.animationDelay = Math.random() * 0.8 + "s";
+      c.style.transform = `rotate(${Math.random() * 360}deg)`;
+      $("confetti").appendChild(c);
+      c.addEventListener("animationend", () => c.remove());
+    }
+  }
 </script>
 </body>
 </html>
